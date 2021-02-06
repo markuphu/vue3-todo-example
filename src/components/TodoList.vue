@@ -5,17 +5,23 @@
       <input type="checkbox" v-model="todo.completed">
       {{ todo.title }}
     </li>
+
+    <p>Elkészült feladatok száma: {{ numberOfCompletedTodos }}</p>
   </ul>
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 export default {
   setup () {
     const todo = ref('')
     const todos = ref([])
     let id = 0
+
+    const numberOfCompletedTodos = computed(() =>
+        todos.value.filter(todo => todo.completed).length
+    )
 
     function addTodo () {
       todos.value.push({
@@ -35,7 +41,8 @@ export default {
     return {
       todo,
       todos,
-      addTodo
+      addTodo,
+      numberOfCompletedTodos
     }
   }
 }
