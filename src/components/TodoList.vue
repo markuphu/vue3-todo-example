@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 export default {
   setup () {
@@ -27,6 +27,10 @@ export default {
       todo.value = ''
       id++
     }
+
+    watch(todos, newValue => {
+      console.log(`A teendők új száma: ${newValue.length}`)
+    }, { deep: true })
 
     return {
       todo,
