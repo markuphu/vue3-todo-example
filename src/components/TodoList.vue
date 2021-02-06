@@ -1,12 +1,14 @@
 <template>
   <input type="text" v-model="todo" placeholder="Teendő">
-  {{ todo }}
+  <p>{{ todo }}</p>
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   setup () {
-    const todo = ''
+    const todo = ref('')
     
     return {
       todo
